@@ -11,7 +11,5 @@ jobs:
     name: Maven compile
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: compile maven
-        run: "mvn compile"
+        runs: "mvn compile"
