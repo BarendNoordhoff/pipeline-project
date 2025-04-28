@@ -1,0 +1,15 @@
+name: Check code health locally
+on:
+  push:
+    tags-ignore:
+      - "*"
+    branches-ignore:
+      - "main"
+
+jobs:
+  check_if_maven_compiles:
+    name: Maven compile
+    runs-on: ubuntu-22.04
+    steps:
+      - name: compile maven
+        runs: "mvn compile"
