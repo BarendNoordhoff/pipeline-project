@@ -1,4 +1,6 @@
 name: Check code health locally
+concurrency:
+  group: pirate-king
 on:
   push:
     tags-ignore:
