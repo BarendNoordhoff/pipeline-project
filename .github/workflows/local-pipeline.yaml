@@ -9,7 +9,7 @@ on:
 jobs:
   check_if_maven_compiles:
     name: Maven compile
-    runs-on: ubuntu-22.04
+    runs: ubuntu-22.04
     steps:
       - name: compile maven
         runs: "mvn compile"
