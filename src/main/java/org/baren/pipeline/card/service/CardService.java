@@ -18,4 +18,8 @@ public class CardService {
         teval.setManaValue(4);
         return teval;
     }
+
+    public int isOneTwo() {
+        return  1 % 2;
+    }
 }
