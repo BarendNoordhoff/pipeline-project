@@ -1,0 +1,21 @@
+name: merge-pipeline.yml
+on:
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  push_to_backup:
+    name: Push to backup
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pushes to backup repo
+        uses: BarendNoordhoff/pipeline-projet-backup@main
+        env:
+          API_TOKEN_GITHUB: ${{ SECRETS.API_TOKEN_GITHUB }}
+        with:
+          destination-github-username: 'barend'
+          destination-repository-name: 'pipeline-projet-backup'
+          user-email: barendnoordhoff@hotmail.nl
+          target-branch: main
