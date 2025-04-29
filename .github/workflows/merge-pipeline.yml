@@ -32,7 +32,7 @@ jobs:
 
           # Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
           # (pakt automatisch de branch waarop is gepushed)
-          cp -r ./* pipeline-project-backup/
+          cp -r ./* /
 
           # Gaat in de backup repo.
           cd pipeline-project-backup
