@@ -16,8 +16,8 @@ jobs:
     name: Push to backup
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout this repo
-        uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v4
       - name: Push to the other repo
         run: |
 #          Zet de git user identity
