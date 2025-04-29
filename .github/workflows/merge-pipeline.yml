@@ -1,4 +1,6 @@
 name: merge-pipeline.yml
+concurrency:
+  group: pirate-king
 # TODO: de pipeline op pull request afvuren en niet op push, is nu aangepast voor gemak van testen
 #on:
 #  pull_request:
@@ -18,27 +20,25 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+
       - name: Push to the other repo
         run: |
-#          Zet de git user identity
+          # Zet de git user identity
           git config --global user.name "Github Actions"
           git config --global user.email "barednoordhoff@hotmail.nl"
           
-#          Clone de repo waar we naartoe willen pushen.
+          # Clone de repo waar we naartoe willen pushen.
           git clone https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/barend/pipeline-project-backup.git
 
-#          Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
-#          (pakt automatisch de branch waarop is gepushed)
+          # Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
+          # (pakt automatisch de branch waarop is gepushed)
           cp -r ./* pipeline-project-backup/
 
-#          Gaat in de backup repo.
+          # Gaat in de backup repo.
           cd pipeline-project-backup
 
-#          Stage de changes
+          # Stage, Commit en push de changes
           git add .
-
-#          Commit
-          git commit -m "Backup commit from pull request from branch '${{github.head_ref}}' to main on $(date)"
-
-#          Push
+          COMMIT_MESSAGE="Backup commit from pull request from branch '${{github.head_ref}}' to main on $(date)"
+          git commit -m "$COMMIT_MESSAGE" || echo "niks om te commiten"
           git push origin main
