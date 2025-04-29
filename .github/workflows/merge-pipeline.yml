@@ -1,7 +1,13 @@
 name: merge-pipeline.yml
+#on:
+#  pull_request:
+#    branches:
+#      - "main"
 on:
-  pull_request:
-    branches:
+  push:
+    tags-ignore:
+      - "*"
+    branches-ignore:
       - "main"
 
 jobs:
@@ -15,7 +21,8 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ SECRETS.API_TOKEN_GITHUB }}
         with:
+          source-directory: 'pipeline-project-backup'
           destination-github-username: 'barend'
-          destination-repository-name: 'pipeline-projet-backup'
+          destination-repository-name: 'pipeline-project-backup'
           user-email: barendnoordhoff@hotmail.nl
           target-branch: main
