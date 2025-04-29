@@ -32,7 +32,7 @@ jobs:
 
           # Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
           # (pakt automatisch de branch waarop is gepushed)
-          rsync -av --exclude='.git' ./ /
+          rsync -av --exclude='.git' ./ ./
 
           # Gaat in de backup repo.
           cd pipeline-project-backup
