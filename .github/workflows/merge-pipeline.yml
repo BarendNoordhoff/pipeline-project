@@ -28,11 +28,11 @@ jobs:
           git config --global user.email "barednoordhoff@hotmail.nl"
           
           # Clone de repo waar we naartoe willen pushen.
-          git clone https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/BarendNoordhoff/pipeline-project-backup.git backup-repo
+          git clone https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/BarendNoordhoff/pipeline-project-backup.git
 
           # Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
           # (pakt automatisch de branch waarop is gepushed)
-          rsync -av ./ backup-repo/
+          rsync -av --exclude='.git' ./ /
 
           # Gaat in de backup repo.
           cd pipeline-project-backup
