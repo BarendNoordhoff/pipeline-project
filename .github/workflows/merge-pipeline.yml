@@ -28,7 +28,7 @@ jobs:
           git config --global user.email "barednoordhoff@hotmail.nl"
           
           # Clone de repo waar we naartoe willen pushen.
-          git clone https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/BarendNoordhoff/pipeline-project-backup.git
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/BarendNoordhoff/pipeline-project-backup.git
 
           # Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
           # (pakt automatisch de branch waarop is gepushed)
