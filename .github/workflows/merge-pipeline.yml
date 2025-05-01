@@ -1,6 +1,8 @@
-name: merge-pipeline.yml
+name: Push the current changes to the backup repo
+concurrency:
+  group: pirate-king
 on:
-  pull_request:
+  push:
     branches:
       - "main"
 
@@ -9,13 +11,27 @@ jobs:
     name: Push to backup
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Pushes to backup repo
-        uses: BarendNoordhoff/pipeline-projet-backup@main
-        env:
-          API_TOKEN_GITHUB: ${{ SECRETS.API_TOKEN_GITHUB }}
-        with:
-          destination-github-username: 'barend'
-          destination-repository-name: 'pipeline-projet-backup'
-          user-email: barendnoordhoff@hotmail.nl
-          target-branch: main
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Push to the other repo
+        run: |
+          # Zet de git user identity
+          git config --global user.name "Github Actions"
+          git config --global user.email "barednoordhoff@hotmail.nl"
+          
+          # Clone de repo waar we naartoe willen pushen.
+          git clone https://x-access-token:${{ secrets.API_TOKEN_GITHUB }}@github.com/BarendNoordhoff/pipeline-project-backup.git pipeline-project-backup
+
+          # Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
+          # (pakt automatisch de branch waarop is gepushed)
+          rsync -av --exclude='.git' --exclude='pipeline-project-backup' ./ ./pipeline-project-backup/
+
+          # Gaat in de backup repo.
+          cd pipeline-project-backup
+
+          # Stage, Commit en push de changes
+          git add .
+          COMMIT_MESSAGE="Backup commit from pull request from branch '${{ github.head_ref || github.ref_name }}' to main on $(date)"
+          git commit -m "$COMMIT_MESSAGE" || echo "niks om te commiten"
+          git push origin main
