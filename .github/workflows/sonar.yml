@@ -24,7 +24,5 @@ jobs:
         env:
           SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
         with:
-          projectBaseDir: app/src
-          args: >
-            -Dsonar.organization = ${{ inputs.ORGANIZATION }}
-            -Dsonar.projectKey = ${{ inputs.PROJECT_KEY }}
+          projectKey: ${{ inputs.PROJECT_KEY }}
+          organization: ${{ inputs.ORGANIZATION }}
