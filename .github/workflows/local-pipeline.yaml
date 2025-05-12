@@ -25,7 +25,7 @@ jobs:
         run: "mvn verify"
   verify_sonar:
     name: sonar
-    uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@main
+    uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@pipeline-shenanigans
     with:
       SONAR_TOKEN: 'BAWUP'
       PROJECT_KEY: 'WOOP WOOP'
