@@ -23,3 +23,16 @@ jobs:
           cache: maven
       - name: compile maven
         run: "mvn verify"
+  verify_sonar:
+    name: sonar
+    runs-on: ubuntu-22.04
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: Sonarqube
+      uses: barendnoordhoff//pipeline-project/.github/workflows/sonar/sonar.yml
+      with:
+        SONAR_TOKEN: 'token'
+        PROJECT_KEY: 'key'
+        ORGANIZATION: 'org'
+
