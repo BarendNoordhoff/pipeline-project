@@ -30,4 +30,6 @@ jobs:
     with:
       PROJECT_KEY: "BarendNoordhoff_pipeline-project"
       ORGANIZATION: 'barendnoordhoff'
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
