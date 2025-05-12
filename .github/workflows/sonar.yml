@@ -19,5 +19,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-#      - name: sonar
-#        uses:
+      - name: sonar
+        uses: sonarsource/sonarcloud-github-action@v4.2
+        env:
+          SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
+        with:
+          projectBaseDir: app/src
+          args: >
+            -Dsonar.organization = ${{ inputs.ORGANIZATION }}
+            -Dsonar.projectKey = ${{ inputs.PROJECT_KEY }}
