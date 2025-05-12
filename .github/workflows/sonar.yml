@@ -2,9 +2,6 @@ name: sonar.yml
 on:
   workflow_call:
     inputs:
-      SONAR_TOKEN:
-        required: true
-        type: string
       PROJECT_KEY:
         required: true
         type: string
@@ -22,7 +19,7 @@ jobs:
       - name: sonar
         uses: sonarsource/sonarqube-scan-action@v4
         env:
-          SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           INPUT_PROJECTBASEDIR: src
         with:
           projectKey: ${{ inputs.PROJECT_KEY }}
