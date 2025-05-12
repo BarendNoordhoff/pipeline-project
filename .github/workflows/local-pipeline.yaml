@@ -27,7 +27,7 @@ jobs:
     name: sonar
     uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@pipeline-shenanigans
     with:
-      SONAR_TOKEN: 'BAWUP'
-      PROJECT_KEY: 'WOOP WOOP'
-      ORGANIZATION: 'YEAAA'
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      PROJECT_KEY: "BarendNoordhoff_pipeline-project"
+      ORGANIZATION: 'barendnoordhoff'
 
