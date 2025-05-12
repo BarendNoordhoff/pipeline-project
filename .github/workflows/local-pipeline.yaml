@@ -25,7 +25,6 @@ jobs:
         run: "mvn verify"
   verify_sonar:
     name: sonar
-    runs-on: ubuntu-22.04
     uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar@main
     with:
       SONAR_TOKEN: 'token'
