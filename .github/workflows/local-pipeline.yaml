@@ -26,7 +26,7 @@ jobs:
         run: "mvn verify"
   verify_sonar:
     name: sonar
-    uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@pipeline-shenanigans
+    uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@main
     with:
       PROJECT_KEY: "BarendNoordhoff_pipeline-project"
       ORGANIZATION: 'barendnoordhoff'
