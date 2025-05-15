@@ -22,10 +22,9 @@ jobs:
     name: test2
     runs-on: ubuntu-22.04
     needs: test_input
+    if: needs.test_input.outputs.output == 'don''t trigger'
     steps:
-      - env:
-          OUTPUT1: ${{needs.test_input.outputs.output}}
-        run: echo "$OUTPUT1"
+        run: echo "${{needs.test_input.outputs.output}}"
 
   check_if_maven_compiles:
     name: Maven verify
