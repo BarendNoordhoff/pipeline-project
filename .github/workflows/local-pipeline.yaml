@@ -10,6 +10,22 @@ on:
       - "main"
 
 jobs:
+  test_input:
+    name: test
+    runs-on: ubuntu-22.04
+    outputs:
+      output: ${{ steps.step1.outputs.test }}
+    steps:
+      - id: step1
+        run: echo 'test=hello world!' >> "$GITHUB_OUTPUT"
+  test_output:
+    name: test2
+    runs-on: ubuntu-22.04
+    steps:
+      - env:
+          OUTPUT1: ${{needs.test_input,outputs.output}}
+        run: echo "$OUTPUT1"
+
   check_if_maven_compiles:
     name: Maven verify
     runs-on: ubuntu-22.04
