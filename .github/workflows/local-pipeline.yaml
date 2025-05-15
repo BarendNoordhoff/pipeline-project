@@ -35,7 +35,7 @@ jobs:
   send_notification:
     name: Send notification
     runs-on: ubuntu-22.04
-    if: always()
+    if: {{ failure() }}
     needs:
       - check_if_maven_compiles
       - verify_sonar
