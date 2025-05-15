@@ -49,7 +49,7 @@ jobs:
           embed-title: The pipeline to push to branch ${{ github.ref }}
           embed-description: ${{ github.action_status }}
           embed-footer-text: This is a automated message from the pipeline beep boop.
-          embed-timestamp: $(date)
+#          embed-timestamp:
 #          filename: notification.json
 #      - run: echo "${{needs.test_input.outputs.output}}"
 
