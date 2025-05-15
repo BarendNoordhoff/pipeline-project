@@ -17,7 +17,9 @@ jobs:
       output: ${{ steps.step1.outputs.test }}
     steps:
       - id: step1
-        run: echo "test=hello world!" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "test=hello world!" >> "$GITHUB_OUTPUT"
+          exit 1
   test_output:
     name: test2
     runs-on: ubuntu-22.04
