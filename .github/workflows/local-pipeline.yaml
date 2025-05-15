@@ -21,10 +21,11 @@ jobs:
   test_output:
     name: test2
     runs-on: ubuntu-22.04
+    needs: test_input
     steps:
       - env:
           OUTPUT1: ${{needs.test_input.outputs.output}}
-        run: echo '${{needs.test_input.outputs.output}}'
+        run: echo "$OUTPUT1"
 
   check_if_maven_compiles:
     name: Maven verify
