@@ -24,7 +24,7 @@ jobs:
     steps:
       - env:
           OUTPUT1: ${{needs.test_input.outputs.output}}
-        run: echo "$OUTPUT1"
+        run: echo '${{needs.test_input.outputs.output}}'
 
   check_if_maven_compiles:
     name: Maven verify
