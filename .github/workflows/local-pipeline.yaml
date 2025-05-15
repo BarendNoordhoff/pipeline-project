@@ -43,7 +43,6 @@ jobs:
     needs:
       - check_if_maven_compiles
       - verify_sonar
-#    if: ${{ needs.check_if_maven_compiles.result != 'success' || needs.verify_sonar.result != ''}}
     steps:
       - uses: actions/checkout@v4
       - name: Discord webhook
