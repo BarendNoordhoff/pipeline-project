@@ -45,6 +45,11 @@ jobs:
         uses: tsickert/discord-webhook@v7.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          filename: notification.json
+          embed-author-name: ${{ github.actor }}
+          embed-title: The pipeline to push to branch ${{ github.ref }}
+          embed-description: ${{ github.action_status }}
+          embed-footer-text: This is a automated message from the pipeline beep boop.
+          embed-timestamp: $(date)
+#          filename: notification.json
 #      - run: echo "${{needs.test_input.outputs.output}}"
 
