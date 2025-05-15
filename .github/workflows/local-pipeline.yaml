@@ -40,10 +40,11 @@ jobs:
       - verify_sonar
 #    if: ${{ needs.check_if_maven_compiles.result != 'success' || needs.verify_sonar.result != ''}}
     steps:
+      - uses: actions/checkout@v4
       - name: Discord webhook
         uses: tsickert/discord-webhook@v7.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          content: test;
+          content: notification.json
 #      - run: echo "${{needs.test_input.outputs.output}}"
 
