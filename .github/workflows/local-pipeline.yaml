@@ -49,5 +49,4 @@ jobs:
           embed-title: The pipeline to push to branch ${{ github.ref_name }} failed
           embed-description: ${{ github.action_status }}
           embed-footer-text: This is a automated message from the pipeline beep boop.
-          embed-timestamp: $NOW
 
