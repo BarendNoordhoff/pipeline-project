@@ -10,24 +10,6 @@ on:
       - "main"
 
 jobs:
-  test_input:
-    name: test
-    runs-on: ubuntu-22.04
-    outputs:
-      output: ${{ steps.step1.outputs.test }}
-    steps:
-      - id: step1
-        run: |
-          echo "test=hello world!" >> "$GITHUB_OUTPUT"
-          exit 1
-  test_output:
-    name: test2
-    runs-on: ubuntu-22.04
-    needs: test_input
-    if: ${{ needs.test_input.result == 'success'}}
-    steps:
-        - run: echo "${{needs.test_input.outputs.output}}"
-
   check_if_maven_compiles:
     name: Maven verify
     runs-on: ubuntu-22.04
@@ -50,4 +32,18 @@ jobs:
       ORGANIZATION: 'barendnoordhoff'
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  send_notification:
+    name: test2
+    runs-on: ubuntu-22.04
+    needs:
+      - check_if_maven_compiles
+      - verify_sonar
+#    if: ${{ needs.check_if_maven_compiles.result != 'success' || needs.verify_sonar.result != ''}}
+    steps:
+      - name: Discord webhook
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          content: test;
+#      - run: echo "${{needs.test_input.outputs.output}}"
 
