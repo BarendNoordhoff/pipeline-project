@@ -26,12 +26,17 @@ jobs:
         run: "mvn verify"
   verify_sonar:
     name: sonar
-    uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@main
-    with:
-      PROJECT_KEY: "BarendNoordhoff_pipeline-project"
-      ORGANIZATION: 'barendnoordhoff'
-    secrets:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    runs-on: ubuntu-22.04
+    steps:
+      - run: |
+          echo "Oof, an error"
+          exit 1
+#    uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@main
+#    with:
+#      PROJECT_KEY: "BarendNoordhoff_pipeline-project"
+#      ORGANIZATION: 'barendnoordhoff'
+#    secrets:
+#      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   send_notification:
     name: test2
     runs-on: ubuntu-22.04
@@ -46,7 +51,7 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           embed-author-name: ${{ github.actor }}
-          embed-title: The pipeline to push to branch ${{ github.ref }}
+          embed-title: The pipeline to push to branch ${{ github.ref_name }}
           embed-description: ${{ github.action_status }}
           embed-footer-text: This is a automated message from the pipeline beep boop.
 #          embed-timestamp:
