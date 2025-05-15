@@ -24,7 +24,7 @@ jobs:
     needs: test_input
     if: needs.test_input.outputs.output == 'don''t trigger'
     steps:
-        run: echo "${{needs.test_input.outputs.output}}"
+        - run: echo "${{needs.test_input.outputs.output}}"
 
   check_if_maven_compiles:
     name: Maven verify
