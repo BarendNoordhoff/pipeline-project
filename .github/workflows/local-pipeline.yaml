@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - env:
-          OUTPUT1: ${{needs.test_input,outputs.output}}
+          OUTPUT1: ${{needs.test_input.outputs.output}}
         run: echo "$OUTPUT1"
 
   check_if_maven_compiles:
