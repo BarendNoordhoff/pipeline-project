@@ -40,9 +40,9 @@ jobs:
   send_notification:
     name: test2
     runs-on: ubuntu-22.04
-    needs:
-      - check_if_maven_compiles
-      - verify_sonar
+#    needs:
+#      - check_if_maven_compiles
+#      - verify_sonar
     steps:
       - uses: actions/checkout@v4
       - name: Discord webhook
