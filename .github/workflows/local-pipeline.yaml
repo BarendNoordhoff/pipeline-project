@@ -27,11 +27,22 @@ jobs:
   verify_sonar:
     name: sonar
     runs-on: ubuntu-22.04
+
     uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@main
+
+
     with:
+
+
       PROJECT_KEY: "BarendNoordhoff_pipeline-project"
+
+
       ORGANIZATION: 'barendnoordhoff'
+
+
     secrets:
+
+
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   send_notification:
     name: test2
