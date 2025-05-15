@@ -22,7 +22,6 @@ jobs:
     name: test2
     runs-on: ubuntu-22.04
     needs: test_input
-    if: ${{ needs.test_input.outputs.output == 'dont trigger'}}
     steps:
         - run: echo "${{needs.test_input.outputs.output}}"
 
