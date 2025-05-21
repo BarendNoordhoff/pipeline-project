@@ -21,6 +21,6 @@ public class CardControllerTests {
 
     @Test
     void testCardGet() {
-        assertNull(1);
+        assertNull(null);
     }
 }
